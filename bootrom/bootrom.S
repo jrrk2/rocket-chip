@@ -1,10 +1,10 @@
-#define DRAM_BASE 0x80000000
+#define ROM_BASE 0x40000000
 
 .section .text.start, "ax", @progbits
 .globl _start
 _start:
   csrwi 0x7c1, 0 // disable chicken bits
-  li s0, DRAM_BASE
+  li s0, ROM_BASE
   csrr a0, mhartid
   la a1, _dtb
   jr s0

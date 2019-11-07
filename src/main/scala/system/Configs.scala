@@ -18,11 +18,11 @@ class BaseConfig extends Config(
   new WithDefaultSlavePort() ++
   new WithTimebase(BigInt(1000000)) ++ // 1 MHz
   new WithDTS("freechips,rocketchip-unknown", Nil) ++
-  new WithNExtTopInterrupts(2) ++
+  new WithNExtTopInterrupts(4) ++
   new BaseSubsystemConfig()
 )
 
-class DefaultConfig extends Config(new WithNBigCores(1) ++ new BaseConfig)
+class DefaultConfig extends Config(new WithJtagDTMSystem ++ new WithNBigCores(1) ++ new BaseConfig)
 
 class DefaultBufferlessConfig extends Config(new WithBufferlessBroadcastHub ++ new DefaultConfig)
 class DefaultSmallConfig extends Config(new WithNSmallCores(1) ++ new BaseConfig)
